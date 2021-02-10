@@ -1,0 +1,704 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block css %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/home.css' %}">
+</head>
+{% endblock css %}
+
+{% block content %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar">
+    <a class="navbar-brand" href="#">
+        <img src="{%static 'images/logo.png' %}" width="25" height="25" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!--<li class="nav-item">
+          <a class="nav-link product_description" href="#">Sobre Nós</a>
+        </li>-->
+        <li class="nav-item">
+            <a class="nav-link product_description" href="#produtos">Os Nossos Produtos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link product_description" href="#contactos">Contacte-nos</a>
+        </li>
+        <!--<li class="nav-item">
+            <a class="nav-link" href="https://www.facebook.com/O-Quadradinho-100222518414321">
+                <img src="{%static 'images/fb_icon.png' %}" width="25" height="25" alt="">
+            </a>
+        </li>-->
+      </ul>
+      
+    </div>
+</nav>  
+
+
+
+<div class="container-fluid background bg1" style="background-image: url('static/images/ovelhas\ 1.png');">
+    <div class="row mt-2">
+        <div class="col-12 mt-5">
+            <img class="center" src="{%static 'images/logo_maior.png' %}" width=8% height=auto alt="" style="margin-top: 50px;">
+        </div> 
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <a>
+                <h1 class="text-center title"> O Quadradinho </h1>
+            </a>  
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-sm-12 col-md-12">
+            <a>
+                <h2 class="text-center title1"> Quem Somos? </h2>
+            </a>  
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-sm-2 col-md-4"></div>
+        <div class="col-sm-8 col-md-4">
+            <a>
+                <p class="text-center description"> Descubra a nossa loja de produtos artesanais, localizada no coração da Serra da Estrela em plena vila de Manteigas. </p>
+            </a>  
+        </div>        
+        <div class="col-sm-2 col-md-4"></div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-sm-12 col-md-12">
+            <a href="#produtos">
+                <img class="img-fluid center" src="{%static 'images/circle_arrow.png' %}" alt="" style= "cursor:pointer;">
+            </a> 
+        </div>
+        
+    </div>
+    <script>
+        window.onload = function () {
+            
+            function changeImage() {   
+                var BackgroundImg=["/static/images/ovelhas\ 1.png",
+                    "/static/images/pantufas1\ 1.png",
+                    "/static/images/cao.png",
+                    "/static/images/mel.png",
+                    "/static/images/licores.png"
+                ];
+                var i = Math.floor((Math.random() * 5));
+                var get = document.querySelector(".bg1");
+                get.style.backgroundImage = 'url("' + BackgroundImg[i] + '")';
+            }
+            window.setInterval(changeImage, 5000);
+            myFunction();
+            var input, filter, i;
+            input = document.getElementById('myInput');
+            input.value = '';
+        }
+  
+        function toggle(){
+            var lista_filters = document.getElementById("lista_filters");
+            var filters = document.getElementById("filters");
+            var col_aux = document.getElementById("col_aux");
+            if (lista_filters.style.display == "block") {
+                lista_filters.style.display = "none";
+                col_aux.style.display = "none";
+                filters.innerHTML = "show";
+                filters.src = "{%static 'images/filter.png' %}";
+            }
+            else {
+                lista_filters.style.display = "block";
+                col_aux.style.display = "block";
+                filters.innerHTML = "hide";
+                filters.src = "{%static 'images/filter_open.png' %}";
+            }
+        }
+    
+        
+    </script>
+</div>
+
+<div class="container-fluid background bg2" id="produtos">
+
+    <div class="row">
+        <div class="col-4">
+            <a href="javascript:toggle();">
+                <img src="{%static 'images/filter.png' %}"  id="filters" width="45px" height="45px" alt=""  style="margin-top: 80px; margin-left:40px;cursor:pointer;">
+            </a>
+        </div>
+        <div class="ml-auto" style="margin-top: 80px;margin-right:40px;">  
+            <input type="text" id="myInput" onkeyup="myFunction(3);" placeholder="Search products..." style="background-image: url('static/images/searchicon.png');">
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class = "col-md-1 col-sm-4" id="col_aux" style="display:none;"></div>
+
+        <div class="col-md-4 col-sm-8">
+            <a class="n_produtos" id = "no_produtos" style="margin-top: 100px; margin-left:40px;">Produtos ({{produtos|length}})</a>
+        </div>
+        
+        <div class="col-2 ml-auto">
+            <div class="dropdown">
+                <a class="ordenar_por" id="ordenar" style="margin-right:5px;">Ordenar por</a>
+                <a class="ordenar_por" id="a_z" style="margin-right:5px; display:none">Ordenar por: A-Z</a>
+                <a class="ordenar_por" id="z_a" style="margin-right:5px; display:none">Ordenar por: Z-A</a>
+                <a class="down"></a>
+                <div class="dropdown-content">
+                  <a onclick="myFunction(1);">A-Z</a>
+                  <a onclick="myFunction(2);">Z-A</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper_produtos" style="margin-top: 30px;">
+
+        <div class="produtos_left" id="lista_filters" style="display:none;">
+            <div class="row">
+                <form class="filters_checkbox">
+                    <table class="table_filters">
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label class="checkbox">
+                                <input type="checkbox" name="filtros" value="1" onclick="myFunction()"/>
+                                <span>Licores</span>
+                            </label>
+                          </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="2" onclick="myFunction()"/>
+                                    <span>Doces</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="3" onclick="myFunction()"/>
+                                    <span>Lembranças</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="margin-left: 20px; font-weight: bold;">Lãs</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="41" onclick="myFunction()"/>
+                                    <span>Cachecóis</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="42" onclick="myFunction()"/>
+                                    <span>Gorros</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="43" onclick="myFunction()"/>
+                                    <span>Mantas</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="44" onclick="myFunction()"/>
+                                    <span>Meias</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="45" onclick="myFunction()"/>
+                                    <span>Ponchos</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="margin-left: 20px; font-weight: bold;">Peles</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="51" onclick="myFunction()"/>
+                                    <span>Gorros</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="52" onclick="myFunction()"/>
+                                    <span>Luvas</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="53" onclick="myFunction()"/>
+                                    <span>Pantufas</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="margin-left: 20px; font-weight: bold;">Kit Neve</p> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="61" onclick="myFunction()"/>
+                                    <span>Botas</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="62" onclick="myFunction()"/>
+                                    <span>Luvas</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="63" onclick="myFunction()"/>
+                                    <span>Trenós</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="margin-left: 20px; font-weight: bold;">Loiças</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="71" onclick="myFunction()"/>
+                                    <span>Artesanais</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="72" onclick="myFunction()"/>
+                                    <span>Decorativas</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="73" onclick="myFunction()"/>
+                                    <span>Utilitárias</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="8" onclick="myFunction()"/>
+                                    <span>Pijamas</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="9" onclick="myFunction()"/>
+                                    <span>Jogos Banho</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="filtros" value="10" onclick="myFunction()"/>
+                                    <span>Para o Bebé</span>
+                                </label>
+                            </td>
+                        </tr>
+                        
+                      </table>
+                </form>
+            </div>
+        </div>
+        
+        <div id="produtos_right">
+            
+            <div class="row mt-4" id=change>
+                {% for p in produtos %}
+                    <div class="col-md-4 col-sm-6 col-xs-12 border_produto"> 
+                        <a href="{% url 'produtoInfo'%}?nome={{p.nome}}">
+                            <img class="produto_image center" src="{{ p.img1.url }}"> 
+                        </a>
+                        <a href="{% url 'produtoInfo'%}?nome={{p.nome}}">
+                            <p class="produto_nome text-center">{{p.nome}}</p>
+                        </a>
+                    </div>
+                    
+                {% endfor %}
+                    
+            </div>
+
+                <script>
+                    function myFunction(flag){
+                        
+                        var elemento = document.getElementById("change");
+                        
+                        var elementsChecked =  document.getElementsByName("filtros");
+
+                        var getall = [];
+                        for (index = 0; index < elementsChecked.length; index++) { 
+                            if(elementsChecked[index].checked==true){
+                                getall.push(elementsChecked[index].value);
+                            } 
+                        }
+                        var ordenar = document.getElementById("ordenar");
+                        var a_z = document.getElementById("a_z");
+                        var z_a = document.getElementById("z_a");
+                        ordenar.style.display="inline-block";
+                        a_z.style.display="none";
+                        z_a.style.display="none";
+                        var no_elementos = document.getElementById("no_produtos");
+                        if(getall.length==0){
+                            if(flag){
+                                var contaProdutos=0;
+                                elemento.innerHTML = "";
+                                lista_nome = []
+                                lista_grupo = []
+                                lista_img1 = []
+                                "{% for p in produtos %}"  
+                                    lista_nome.push("{{ p.nome }}")
+                                    lista_grupo.push("{{ p.grupo }}")
+                                    lista_img1.push("{{ p.img1.url }}")
+                                "{% endfor %}"
+
+                                //ordem crescente
+                                if(flag==1){
+                                    var input, filter, i;
+                                    input = document.getElementById('myInput');
+                                    
+                                    filter = input.value.toUpperCase();
+                                    
+                                    let min;
+                                    for (let i = 0; i < lista_nome.length; i++) {
+                                        // Assume a minimum value        
+                                        min = i;
+                                        for (let j = i + 1; j < lista_nome.length; j++) {
+                                            if (lista_nome[j] < lista_nome[min]) {
+                                                min = j;
+                                            }
+                                        }
+                                    
+                                        // Swap if new minimun value found
+                                        if (min !== i) {
+                                            [lista_nome[i], lista_nome[min]] = [lista_nome[min], lista_nome[i]];
+                                            [lista_grupo[i], lista_grupo[min]] = [lista_grupo[min], lista_grupo[i]];
+                                            [lista_img1[i], lista_img1[min]] = [lista_img1[min], lista_img1[i]];
+                                        }
+                                    }
+                                    
+                                    if(filter==""){
+                                        for (ind = 0; ind < lista_nome.length; ind++) {
+                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                            no_elementos.innerHTML = "Produtos (" + "{{produtos|length}}" + ")"; 
+                                        }
+                                    }
+                                    else{
+                                        for (i = 0; i < lista_nome.length; i++) {
+                                            if (lista_nome[i].toUpperCase().indexOf(filter) > -1) {
+                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
+                                                contaProdutos+=1;  
+                                            }
+                                             else {
+                                                elemento.innerHTML =  elemento.innerHTML;
+                                            }
+                                        }
+                                        no_elementos.innerHTML = "Produtos (" + contaProdutos + ")"; 
+                                    }
+                                    
+                                    ordenar.style.display="none";
+                                    a_z.style.display="inline-block";
+                                    z_a.style.display="none";
+                                }
+
+                                //ordem decrescente
+                                else if(flag==2){
+                                    var input, filter, i;
+                                    input = document.getElementById('myInput');
+                                    
+                                    filter = input.value.toUpperCase();
+
+                                    let max;
+                                    for (let i = 0; i < lista_nome.length; i++)
+                                    {
+                                        // Assume first element is max
+                                        max = i;
+                                        for (let j = i + 1; j < lista_nome.length; j++)
+                                        {
+                                            if (lista_nome[j] > lista_nome[max])
+                                            {
+                                                max = j;
+                                            }
+                                        }
+
+                                        if (max != i)
+                                        {
+                                            [lista_nome[i], lista_nome[max]] = [lista_nome[max], lista_nome[i]];
+                                            [lista_grupo[i], lista_grupo[max]] = [lista_grupo[max], lista_grupo[i]];
+                                            [lista_img1[i], lista_img1[max]] = [lista_img1[max], lista_img1[i]];
+                                        }
+                                    }
+                                    
+                                    if(filter==""){
+                                        for (ind = 0; ind < lista_nome.length; ind++) {
+                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                            no_elementos.innerHTML = "Produtos (" + "{{produtos|length}}" + ")"; 
+                                        }
+                                    }
+                                    else{
+                                        for (i = 0; i < lista_nome.length; i++) {
+                                            if (lista_nome[i].toUpperCase().indexOf(filter) > -1) {
+                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
+                                                contaProdutos+=1;
+                                            }
+                                             else {
+                                                elemento.innerHTML =  elemento.innerHTML;
+                                            }
+                                        }
+                                        no_elementos.innerHTML = "Produtos (" + contaProdutos + ")"; 
+                                    }
+                                    
+                                    ordenar.style.display="none";
+                                    a_z.style.display="none";
+                                    z_a.style.display="inline-block";
+                                }
+                                
+                                //pesquisar
+                                else if (flag==3){
+                                    var input, filter, i;
+                                    input = document.getElementById('myInput');
+                                    
+                                    filter = input.value.toUpperCase();
+                                    
+                                    // Loop through all list items, and hide those who don't match the search query
+                                    for (i = 0; i < lista_nome.length; i++) {
+                                        if (lista_nome[i].toUpperCase().indexOf(filter) > -1) {
+                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
+                                            contaProdutos+=1;
+                                        }
+                                         else {
+                                            elemento.innerHTML =  elemento.innerHTML;
+                                        }
+                                    }
+                                    
+                                    no_elementos.innerHTML = "Produtos (" + contaProdutos + ")"; 
+                                }
+                            }
+                            else{
+                                elemento.innerHTML = "{% for p in produtos %}<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome={{p.nome}}'><img class='produto_image center' src='{{ p.img1.url }}'></a><a href='{% url 'produtoInfo'%}?nome={{p.nome}}'><p class='produto_nome text-center'>{{p.nome}}</p></a></div>{% endfor %}";
+                                no_elementos.innerHTML = "Produtos (" + "{{produtos|length}}" + ")"; 
+                            }
+                            
+                        }
+                        
+                        else{
+                            if(flag!=3){
+                                var input, filter, i;
+                                input = document.getElementById('myInput');
+                                input.value = '';
+                                elemento.innerHTML = "";
+                                var cont = 0;
+                                lista_nome = []
+                                lista_grupo = []
+                                lista_img1 = []
+                                "{% for p in produtos %}"  
+                                    lista_nome.push("{{ p.nome }}")
+                                    lista_grupo.push("{{ p.grupo }}")
+                                    lista_img1.push("{{ p.img1.url }}")
+                                "{% endfor %}"
+                                
+                                if(flag){
+                                    if(flag==1){
+                                        let min;
+                                        for (let i = 0; i < lista_nome.length; i++) {
+                                            // Assume a minimum value        
+                                            min = i;
+                                            for (let j = i + 1; j < lista_nome.length; j++) {
+                                                if (lista_nome[j] < lista_nome[min]) {
+                                                    min = j;
+                                                }
+                                            }
+                                        
+                                            // Swap if new minimun value found
+                                            if (min !== i) {
+                                                [lista_nome[i], lista_nome[min]] = [lista_nome[min], lista_nome[i]];
+                                                [lista_grupo[i], lista_grupo[min]] = [lista_grupo[min], lista_grupo[i]];
+                                                [lista_img1[i], lista_img1[min]] = [lista_img1[min], lista_img1[i]];
+                                            }
+                                        }
+                                        for (ind = 0; ind < lista_nome.length; ind++) {
+                                            for (jnd = 0; jnd < getall.length; jnd++){
+                                                if(lista_grupo[ind]==getall[jnd]){
+                                                    elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                                    cont+=1;
+                                                }
+                                            }
+                                        }
+                                        ordenar.style.display="none";
+                                        a_z.style.display="inline-block";
+                                        z_a.style.display="none";
+                                    }
+                                    else if (flag==2){
+                                        let max;
+                                        for (let i = 0; i < lista_nome.length; i++)
+                                        {
+                                            // Assume first element is max
+                                            max = i;
+                                            for (let j = i + 1; j < lista_nome.length; j++)
+                                            {
+                                                if (lista_nome[j] > lista_nome[max])
+                                                {
+                                                    max = j;
+                                                }
+                                            }
+    
+                                            if (max != i)
+                                            {
+                                                [lista_nome[i], lista_nome[max]] = [lista_nome[max], lista_nome[i]];
+                                                [lista_grupo[i], lista_grupo[max]] = [lista_grupo[max], lista_grupo[i]];
+                                                [lista_img1[i], lista_img1[max]] = [lista_img1[max], lista_img1[i]];
+                                            }
+                                        }
+    
+                                        for (ind = 0; ind < lista_nome.length; ind++) {
+                                            for (jnd = 0; jnd < getall.length; jnd++){
+                                                if(lista_grupo[ind]==getall[jnd]){
+                                                    elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                                    cont+=1;
+                                                }
+                                            }
+                                        }
+                                        ordenar.style.display="none";
+                                        a_z.style.display="none";
+                                        z_a.style.display="inline-block";
+                                    }
+                                }
+                                else{
+                                    for (ind = 0; ind < lista_nome.length; ind++) {
+                                        for (jnd = 0; jnd < getall.length; jnd++){
+                                            if(lista_grupo[ind]==getall[jnd]){
+                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                                cont+=1;
+                                            }
+                                        }
+                                    }
+                                }     
+                                no_elementos.innerHTML = "Produtos (" + cont + ")";      
+                            }
+                            
+                            else{
+                                for (index = 0; index < elementsChecked.length; index++) { 
+                                    if(elementsChecked[index].checked==true){
+                                        elementsChecked[index].checked=false;
+                                    } 
+                                }
+                            }
+                        }
+                        
+                    }
+                </script>
+        </div>
+      </div>       
+</div>
+
+<div class="footer" id="contactos">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h5 class="footer_title">O Quadradinho</h5>
+                <p class="footer_description">Loja de produtos artesanais, 
+                    loiças decorativas e lãs localizada 
+                    no centro da maravilhosa Vila de Manteigas.</p>
+                <a class="link_contacto" href="https://www.google.com/maps/place/O+Quadradinho/@40.4018137,-7.5370959,20z/data=!4m16!1m10!4m9!1m4!2m2!1d-7.5355564!2d40.3993795!4e1!1m3!2m2!1d-7.5369901!2d40.4019024!3m4!1s0xd3cd9b7bce73eff:0x1a194b3225eac3dd!8m2!3d40.4018361!4d-7.5369168">
+                    <i class='fas fa-map-marker-alt' style='font-size:25px;color:red' ></i> 
+                    Manteigas, Portugal
+                </a>
+            </div>
+            <div class="col-md-3 ml-auto">
+                <h5 class="footer_title">Contactos </h5>
+                <address class="footer_description">
+                    E-MAIL:    <a class="link_contacto" href="mailto:anapintovicente@gmail.com">anapintovicente@gmail.com</a><br>
+                    TELEMÓVEL: <a class="link_contacto" href="tel:966177984">966177984</a><br>
+                </address>
+                <a href="https://www.facebook.com/O-Quadradinho-100222518414321" class="fa fa-facebook"></a>
+            </div>
+        </div>
+        <hr class="separation_footer">
+        <div class="row">
+            <div class="col-md-12" style="margin-left: 15px; margin-top: 5px;">
+                <a>
+                    <p class="text-center"> &copy; 2021, O Quadradinho </p>
+                </a>
+            </div>
+        </div>
+        <div class="row mt-2"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block css %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/produto.css' %}">
+</head>
+{% endblock css %}
+
+{% block content %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar">
+    <a class="navbar-brand" href="{% url 'home'%}">
+        <img src="{%static 'images/logo.png' %}" width="25" height="25" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!--<li class="nav-item">
+          <a class="nav-link product_description" href="{% url 'home'%}">Sobre Nós</a>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link product_description" href="{% url 'home'%}#produtos">Os Nossos Produtos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link product_description" href="#contactos">Contacte-nos</a>
+        </li>
+        <!--<li class="nav-item">
+            <a class="nav-link" href="https://www.facebook.com/O-Quadradinho-100222518414321">
+                <img src="{%static 'images/fb_icon.png' %}" width="25" height="25" alt="">
+            </a>
+          </li>-->
+      </ul>
+      
+    </div>
+</nav>  
+<div class="container-fluid background1 bgProduct" id="">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+        <a>
+            <h2 class="text-center product_name" style="margin-top: 80px;margin-bottom: 50px;"> {{produto.nome}} </h2>
+        </a>  
+    </div>
+  </div>
+
+  <div id="wrapper">
+    <div id="left">
+      <!-- Slideshow container -->
+      <div class="slideshow-container">
+        <!-- Full-width images with number and caption text -->
+        {% for item in images_produto %} 
+          <div class="mySlides">
+            <div class="numbertext">{{ forloop.counter }} / {{ images_produto|length }}</div>
+            <img class = "center image_slideshow" src="{{ item.url }}" style="max-height: 350px;max-width: 350px;">
+          </div>
+        {% endfor %}
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <br>
+
+      <!-- The dots/circles -->
+      <div style="text-align:center">
+        {% if produto.img1 %}
+            <span class="dot" onclick="currentSlide(1)"></span>
+        {% endif %}
+        {% if produto.img2 %}
+            <span class="dot" onclick="currentSlide(2)"></span>
+        {% endif %}
+        {% if produto.img3 %}
+            <span class="dot" onclick="currentSlide(3)"></span>
+        {% endif %}
+        {% if produto.img4 %}
+            <span class="dot" onclick="currentSlide(4)"></span>
+        {% endif %}
+        {% if produto.img5 %}
+            <span class="dot" onclick="currentSlide(5)"></span>
+        {% endif %}
+        {% if produto.img6 %}
+            <span class="dot" onclick="currentSlide(6)"></span>
+        {% endif %}
+        
+      </div>
+    </div>
+
+    <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+    </script>
+
+    <div id="right">
+      <div class="row">
+        <div class=col-md-1>
+          <!--<img src="{%static 'images/information.png' %}" width="35px" height="35px" alt="" >-->
+        </div>
+    
+        <div class="col-md-7 descricao_produto">
+          <p>
+            Um mel característico das zonas montanhosas da Serra da Estrela, apresenta um sabor forte e uma consistência densa. 
+          </p>
+          <p>
+            O seu elevado valor nutricional torna-o num produto de excelência e bastante utilizado no tratamento de infeções do sistema urinário e da próstata.
+          </p>
+          {{produto.descricao}}
+        </div>
+      </div>
+      
+      
+              
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+        <img class="center idea_lamp_style" id = "idea_lamp" src="{%static 'images/lamp_off.png' %}"  onmouseover="show_div_lamp_onMouseOver();" onmouseout="show_div_lamp_onMouseOut();" width=7% height=auto alt="" style="cursor: pointer;">
+    </div> 
+  </div>
+  
+  <div class="row mt-2">
+    <div class="col-md-6 center dica_quadradinho_text" id = "dica_quadradinho_text" onmouseover="show_div_lamp_onMouseOver();" onmouseout="show_div_lamp_onMouseOut();">
+        <a>
+            <h3 class="text-center dica_style"> Dica do Quadradinho </h3>
+        </a>  
+    </div>
+    <div class="col-md-6 center dica_quadradinho" style="display: none;"  id ="dica_quadradinho">
+        <a>
+            <p class="text-center dica_style">  Perfeito para conjugar com uma bela torradinha </p>
+        </a>  
+    </div>
+  </div>
+  <div class="row mt-5"></div>
+  <div class="row mt-3"></div>
+
+  <script>
+    function show_dicaDiv(){
+      var dica_quadradinho = document.getElementById("dica_quadradinho");
+      var dica_quadradinho_text = document.getElementById("dica_quadradinho_text");
+      var idea_lamp = document.getElementById("idea_lamp");
+      if (dica_quadradinho.style.display == "block") {
+          dica_quadradinho.style.display = "none";         
+          dica_quadradinho_text.style.display = "block";
+          idea_lamp.src = "{%static 'images/lamp_off.png' %}";
+      }
+      else {
+          dica_quadradinho.style.display = "block";
+          dica_quadradinho_text.style.display = "none";  
+          idea_lamp.src = "{%static 'images/lamp_on.png' %}";
+      }
+    }
+    
+    function show_div_lamp_onMouseOver(){
+      var ideia_lamp = document.getElementById("idea_lamp");
+      ideia_lamp.src="{%static 'images/lamp_on.png' %}";
+
+
+      var dica_quadradinho_text = document.getElementById("dica_quadradinho_text");
+      var dica_quadradinho = document.getElementById("dica_quadradinho");
+      dica_quadradinho_text.style.display="none";
+      dica_quadradinho.style.display="block";
+      
+    }
+
+    function show_div_lamp_onMouseOut(){
+      var ideia_lamp = document.getElementById("idea_lamp");
+      idea_lamp.src="{%static 'images/lamp_off.png' %}";
+
+      var dica_quadradinho_text = document.getElementById("dica_quadradinho_text");
+      var dica_quadradinho = document.getElementById("dica_quadradinho");
+      dica_quadradinho_text.style.display="block";
+      dica_quadradinho.style.display="none";
+    }
+  </script>
+
+</div>
+
+<div class="footer" id="contactos">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-5">
+              <h5 class="footer_title">O Quadradinho</h5>
+              <p class="footer_description">Loja de produtos artesanais, 
+                  loiças decorativas e lãs localizada 
+                  no centro da maravilhosa Vila de Manteigas.</p>
+              <a class="link_contacto" href="https://www.google.com/maps/place/O+Quadradinho/@40.4018137,-7.5370959,20z/data=!4m16!1m10!4m9!1m4!2m2!1d-7.5355564!2d40.3993795!4e1!1m3!2m2!1d-7.5369901!2d40.4019024!3m4!1s0xd3cd9b7bce73eff:0x1a194b3225eac3dd!8m2!3d40.4018361!4d-7.5369168">
+                  <i class='fas fa-map-marker-alt' style='font-size:25px;color:red' ></i> 
+                  Manteigas, Portugal
+              </a>
+          </div>
+          <div class="col-md-3 ml-auto">
+              <h5 class="footer_title">Contactos </h5>
+              <address class="footer_description">
+                  E-MAIL:    <a class="link_contacto" href="mailto:anapintovicente@gmail.com">anapintovicente@gmail.com</a><br>
+                  TELEMÓVEL: <a class="link_contacto" href="tel:966177984">966177984</a><br>
+              </address>
+              <a href="https://www.facebook.com/O-Quadradinho-100222518414321" class="fa fa-facebook"></a>
+          </div>
+      </div>
+      <hr class="separation_footer">
+      <div class="row">
+          <div class="col-md-12" style="margin-left: 15px; margin-top: 5px;">
+              <a>
+                  <p class="text-center"> &copy; 2021, O Quadradinho </p>
+              </a>
+          </div>
+      </div>
+      <div class="row mt-2"></div>
+  </div>
+</div>
+{% endblock %}
