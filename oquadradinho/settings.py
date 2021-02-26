@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-
+import django_heroku
 import os
+import cloudinary_storage
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join (BASE_DIR, 'media')
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hm05cbwgx',
+    'API_KEY': '867731649918885',
+    'API_SECRET': 'sPTn6LZEa2hV9-JVmYqtyTN9uzg'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block css %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/sobre_nos.css' %}">
+</head>
+{% endblock css %}
+
+{% block content %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar">
+    <a class="navbar-brand" href="{% url 'home'%}">
+        <img src="{%static 'images/logo.png' %}" width="25" height="25" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link product_description" href="{% url 'sobreNos'%}">Sobre Nós</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link product_description" href="{% url 'home'%}#produtos">Os Nossos Produtos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link product_description" href="#contactos">Contacte-nos</a>
+        </li>
+        <!--<li class="nav-item">
+            <a class="nav-link" href="https://www.facebook.com/O-Quadradinho-100222518414321">
+                <img src="{%static 'images/fb_icon.png' %}" width="25" height="25" alt="">
+            </a>
+          </li>-->
+      </ul>
+      
+    </div>
+</nav> 
+
+
+<div class="container-fluid background bg" id="">
+
+	<div class="row timeline_back">
+	    <div class="col-sm-12 col-md-12">
+	        <a>
+	            <h2 class="text-center sobre_nos_name" style="margin-top: 80px;margin-bottom: 50px;"> Sobre Nós </h2>
+	        </a>  
+	    </div>
+		<div class="flex-parent">
+			<div class="input-flex-container">
+				<div id="class_ano_1993" class="input active" onclick="changeDiv('ano_1993');">
+					<span id="ano_1993" data-year="1993" onclick="changeDiv(this.id)"></span>
+				</div>
+				<div id="class_ano_1993_2020" class="input" onclick="changeDiv('ano_1993_2020');">
+					<span class="maior" id="ano_1993_2020" data-year="1993-2020" onclick="changeDiv(this.id)"></span>
+				</div>
+				<div id="class_ano_2020" class="input" onclick="changeDiv('ano_2020');">
+					<span id="ano_2020" data-year="2020" onclick="changeDiv(this.id)"></span>
+				</div>
+				<div id="class_ano_2021" class="input" onclick="changeDiv('ano_2021');">
+					<span id="ano_2021" data-year="2021" onclick="changeDiv(this.id)"></span>
+				</div>
+			</div>
+		</div>
+  	</div>
+  	<div class="row mb-5">
+  		<div class="arrow_down"></div>
+  	</div>
+
+  	<div id="1993">
+  		<div class="row mt-5">
+  			<div class="col-md-8 col-sm-12 center text_about_us" style="margin-bottom: 50px;">
+  				<p>
+  					O Quadradinho foi um projeto que se iniciou no século XX, em pleno ano de 1993, quando os dois fundadores, Ana e Augusto, retornaram a Manteigas vindos da Suíça, país para o qual tinham emigrado.
+  				</p>
+  				<p>
+  					A emigração foi algo muito comum na vila de Manteigas, tal como, em outras vilas do interior do país. Muitos partiam à procura de trabalho e melhores condições de vida, no entanto, estar longe da família e dos amigos nem sempre é fácil. Foi o que aconteceu a Ana e Augusto que decidiram voltar à terra que os viu crescer.
+
+  				</p>
+  			</div>
+  			<div class="col-12" style="margin-bottom: 100px;">
+        		<img class="center image_imigration" src="{%static 'images/image1_1993.png' %}">
+  			</div>
+
+  			<div id="divide" style="margin-bottom: 120px;">
+  				<div id="left_logo_original">
+  					<img class="center image_logo_original" src="{%static 'images/logo_original.png' %}">
+  				</div>
+
+  				<div id="right_logo_original">
+  					<div class="row">
+				        <div class=col-md-1>
+				        </div>
+				    
+				        <div class="col-md-8">
+				        	<p class="text_about_us">
+								Numa época em que Manteigas era uma vila conhecida pelas suas inúmeras fábricas, era difícil encontrar um emprego fora dessa área. Assim, e pegando no que a nossa vila e toda a região tem de melhor, os dois decidiram criar o Quadradinho, a loja de produtos artesanais da Serra da Estrela que prometia ser um local de passagem para todos os visitantes. 
+							</p>
+				        </div>
+				    </div>
+  					
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div id="1993_2020" style="display: none;">
+  		<div class="row mt-5">
+  			<div id="divide" style="margin-bottom: 80px;">
+  				<div id="left_logo_original">
+  					<img class="center image_logo_original" src="{%static 'images/image_1993_2020.png' %}">
+  				</div>
+
+  				<div id="right_logo_original">
+  					<div class="row">
+				        <div class=col-md-1>
+				        </div>
+				    
+				        <div class="col-md-8">
+				        	<p class="text_about_us">
+								Ao longo do tempo, a loja teve bons e maus momentos, nos quais o casal procurou sempre servir da melhor forma os seus clientes, mantendo um ambiente familiar e próximo de todos os visitantes.
+							</p>
+				        </div>
+				    </div>
+  					
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+
+
+  	<div id="2020" style="display: none;">
+  		<div class="row mt-5">
+  			<div id="divide">
+  				<div id="left_logo_original">
+  					<img class="center image_covid" src="{%static 'images/image_2020_covid.png' %}">
+  				</div>
+
+  				<div id="right_logo_original">
+  					<div class="row">
+				        <div class=col-md-1>
+				        </div>
+				    
+				        <div class="col-md-8">
+				        	<p class="text_about_us">
+								Nada fazia prever o que aconteceria em 2020, quando um vírus obrigou o Mundo a ficar em casa, fechando comércios, restaurantes, fábricas e paralisando a atividade económica.  
+							</p>
+				        </div>
+				    </div>
+  					
+  				</div>
+  			</div>
+  		</div>
+  		<div class="row mt-5">  			
+  			<div class="col-12" style="margin-top:20px;">
+  				<a href="https://www.facebook.com/O-Quadradinho-100222518414321" style="cursor: pointer;">
+        			<img class="center image2020_facebook" src="{%static 'images/image2020_facebook.png' %}">
+  				</a>
+  			</div>
+  			<div class="col-md-8 col-sm-12 center" style="margin-top:20px;margin-bottom: 80px;">
+  				<p class="text_about_us">
+					Na impossibilidade de manter o seu negócio aberto, Ana e Augusto, tiveram de pensar fora da caixa e decidiram começar o seu caminho no mundo digital. Começaram com a criação da página de facebook atualizada constantemente com os produtos da loja e onde as pessoas podem fazer encomendas e tirar qualquer tipo dúvida.
+  				</p>
+  			</div>
+  		</div>
+  	</div>
+
+
+  	<div id="2021" style="display: none;">
+  		<div class="row mt-5">
+  			<div class="col-md-8 center" style="margin-bottom:40px;">
+  				<p class="text_about_us">
+  					Neste ano, ainda atípico, continuaram com a criação de um Website para a loja. Este recurso ao meio digital permitiu-lhes permanecer em contacto com os seus clientes e abrir horizontes para um futuro melhor! 
+  				</p>
+  			</div>
+  			<div class="col-12">
+  				<a href="{% url 'home'%}" style="cursor: pointer;">
+        			<img class="center image_website" src="{%static 'images/image_2021.png' %}" style="margin-bottom: 80px;">
+  				</a>
+  			</div>
+  		</div>
+  	</div>
+
+
+ 
+
+  <script>
+  	function changeDiv(id_clicked) {
+
+      	var ano1993 = document.getElementById("1993");
+      	var ano1993_2020 = document.getElementById("1993_2020");
+      	var ano2020 = document.getElementById("2020");
+      	var ano2021 = document.getElementById("2021");
+
+      	var class_ano_1993 = document.getElementById("class_ano_1993");
+      	var class_ano_1993_2020 = document.getElementById("class_ano_1993_2020");
+      	var class_ano_2020 = document.getElementById("class_ano_2020");
+      	var class_ano_2021 = document.getElementById("class_ano_2021");
+      	
+ 		class_ano_1993.classList.remove("active");
+ 		class_ano_1993_2020.classList.remove("active");
+ 		class_ano_2020.classList.remove("active");
+ 		class_ano_2021.classList.remove("active");
+
+  		if(id_clicked=="ano_1993"){
+  			class_ano_1993.classList.add("active");
+  			ano1993.style.display = "block";
+  			ano1993_2020.style.display = "none";
+  			ano2020.style.display = "none";   
+  			ano2021.style.display = "none";     
+  		}
+  		else if(id_clicked=="ano_1993_2020"){
+  			class_ano_1993_2020.classList.add("active");
+	        ano1993.style.display = "none"; 
+	        ano1993_2020.style.display = "block";   
+	        ano2020.style.display = "none";   
+	        ano2021.style.display = "none";  
+
+  		}
+  		else if(id_clicked=="ano_2020"){
+  			class_ano_2020.classList.add("active");
+	        ano1993.style.display = "none"; 
+	        ano1993_2020.style.display = "none";   
+	        ano2020.style.display = "block";   
+	        ano2021.style.display = "none";  
+  			
+  		}
+  		else if(id_clicked=="ano_2021"){
+			class_ano_2021.classList.add("active");
+          	ano1993.style.display = "none"; 
+          	ano1993_2020.style.display = "none";   
+         	ano2020.style.display = "none";   
+          	ano2021.style.display = "block";  
+  			
+  		}
+    }
+
+  </script>
+</div>
+
+<div class="footer" id="contactos">
+    <div class="container" style="padding-bottom: 15px;">
+        <div class="row">
+            <div class="col-md-5">
+                <h5 class="footer_title">O Quadradinho</h5>
+                <p class="footer_description">Loja de produtos artesanais, 
+                    loiças decorativas e lãs localizada 
+                    no centro da maravilhosa Vila de Manteigas.</p>
+              
+                <a class="link_contacto" href="https://www.google.com/maps/place/O+Quadradinho/@40.4018137,-7.5370959,20z/data=!4m16!1m10!4m9!1m4!2m2!1d-7.5355564!2d40.3993795!4e1!1m3!2m2!1d-7.5369901!2d40.4019024!3m4!1s0xd3cd9b7bce73eff:0x1a194b3225eac3dd!8m2!3d40.4018361!4d-7.5369168">
+                    <img src="{%static 'images/pin_location.png' %}" width="25" height="25" alt=""> <span class="footer_description">Manteigas, Portugal</span>
+                </a>
+            </div>
+            <div class="col-md-3 ml-auto">
+                <h5 class="footer_title contactos_title">Contactos </h5>
+                <address class="footer_description">
+                    E-MAIL:    <a class="link_contacto footer_description" href="mailto:anapintovicente@gmail.com">anapintovicente@gmail.com</a><br>
+                    TELEMÓVEL: <a class="link_contacto footer_description" href="tel:966177984">966177984</a><br>
+                </address>
+                <a href="https://www.facebook.com/O-Quadradinho-100222518414321" class="fa fa-facebook"></a>
+            </div>
+        </div>
+        <hr class="separation_footer">
+        <div class="row">
+            <div class="col-md-12" style="margin-left: 15px; margin-top: 5px;">
+                <a>
+                    <p class="text-center"> &copy; 2021, O Quadradinho </p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

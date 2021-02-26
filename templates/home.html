@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static%}
+{% load static %}
 
 {% block css %}
 <head>
@@ -9,7 +9,7 @@
 
 {% block content %}
 <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="#page">
         <img src="{%static 'images/logo.png' %}" width="25" height="25" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +18,9 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <!--<li class="nav-item">
-          <a class="nav-link product_description" href="#">Sobre Nós</a>
-        </li>-->
+        <li class="nav-item">
+          <a class="nav-link product_description" href="{% url 'sobreNos' %}" >Sobre Nós</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link product_description" href="#produtos">Os Nossos Produtos</a>
         </li>
@@ -40,11 +40,10 @@
 </nav>  
 
 
-
-<div class="container-fluid background bg1" style="background-image: url('static/images/ovelhas\ 1.png');">
-    <div class="row mt-2">
+<div class="container-fluid background bg1"  id="page" style="background-image: url('{%static 'images/ovelhas 1.png' %}');">
+    <div class="row">
         <div class="col-12 mt-5">
-            <img class="center" src="{%static 'images/logo_maior.png' %}" width=8% height=auto alt="" style="margin-top: 50px;">
+            <img class="center logo_inicial" src="{%static 'images/logo_maior.png' %}" alt="" style="margin-top: 50px;">
         </div> 
     </div>
     
@@ -65,13 +64,13 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-sm-2 col-md-4"></div>
-        <div class="col-sm-8 col-md-4">
+        <div class="col-sm-3 col-md-4 col-2"></div>
+        <div class="col-sm-6 col-md-4 col-8">
             <a>
                 <p class="text-center description"> Descubra a nossa loja de produtos artesanais, localizada no coração da Serra da Estrela em plena vila de Manteigas. </p>
             </a>  
         </div>        
-        <div class="col-sm-2 col-md-4"></div>
+        <div class="col-sm-3 col-md-4 col-2"></div>
     </div>
     <div class="row mt-2">
         <div class="col-sm-12 col-md-12">
@@ -81,6 +80,7 @@
         </div>
         
     </div>
+    
     <script>
         window.onload = function () {
             
@@ -94,6 +94,7 @@
                 var i = Math.floor((Math.random() * 5));
                 var get = document.querySelector(".bg1");
                 get.style.backgroundImage = 'url("' + BackgroundImg[i] + '")';
+
             }
             window.setInterval(changeImage, 5000);
             myFunction();
@@ -127,24 +128,39 @@
 <div class="container-fluid background bg2" id="produtos">
 
     <div class="row">
+        <div class="col-md-auto col-sm-12 ml-auto" style="margin-top: 50px;margin-right:40px;">  
+            <input type="text" id="myInput" onkeyup="myFunction(3);" placeholder="Search products..." style="background-image: url('{% static 'images/searchicon.png' %}');">
+        </div>
+    </div>
+    <div class="row">
         <div class="col-4">
             <a href="javascript:toggle();">
-                <img src="{%static 'images/filter.png' %}"  id="filters" width="45px" height="45px" alt=""  style="margin-top: 80px; margin-left:40px;cursor:pointer;">
+                <img src="{%static 'images/filter.png' %}"  id="filters" width="45px" height="45px" alt=""  style="margin-top: 10px; cursor:pointer;">
             </a>
         </div>
-        <div class="ml-auto" style="margin-top: 80px;margin-right:40px;">  
-            <input type="text" id="myInput" onkeyup="myFunction(3);" placeholder="Search products..." style="background-image: url('static/images/searchicon.png');">
-        </div>
+        <!--<div class="col-auto ml-auto">
+            <div class="dropdown" style="margin-right: 50px; margin-top:40px;">
+                <a class="ordenar_por" id="ordenar" style="margin-right:5px;">Ordenar por</a>
+                <a class="ordenar_por" id="a_z" style="margin-right:5px; display:none">Ordenar por: A-Z</a>
+                <a class="ordenar_por" id="z_a" style="margin-right:5px; display:none">Ordenar por: Z-A</a>
+                <a class="down"></a>
+                <div class="dropdown-content">
+                  <a onclick="myFunction(1);">A-Z</a>
+                  <a onclick="myFunction(2);">Z-A</a>
+                </div>
+            </div>
+        </div>-->
+        
     </div>
 
     <div class="row mt-4">
-        <div class = "col-md-1 col-sm-4" id="col_aux" style="display:none;"></div>
+        <div class = "col-md-1 col-sm-2" id="col_aux" style="display:none;"></div>
 
-        <div class="col-md-4 col-sm-8">
-            <a class="n_produtos" id = "no_produtos" style="margin-top: 100px; margin-left:40px;">Produtos ({{produtos|length}})</a>
+        <div class="col-md-3 col-sm-4">
+            <a class="n_produtos" id = "no_produtos">Produtos ({{produtos|length}})</a>
         </div>
-        
-        <div class="col-2 ml-auto">
+
+        <div class="col-md-auto col-sm-auto col-12 ml-auto">
             <div class="dropdown">
                 <a class="ordenar_por" id="ordenar" style="margin-right:5px;">Ordenar por</a>
                 <a class="ordenar_por" id="a_z" style="margin-right:5px; display:none">Ordenar por: A-Z</a>
@@ -156,6 +172,8 @@
                 </div>
             </div>
         </div>
+        
+        
     </div>
     <div id="wrapper_produtos" style="margin-top: 30px;">
 
@@ -383,7 +401,7 @@
             
             <div class="row mt-4" id=change>
                 {% for p in produtos %}
-                    <div class="col-md-4 col-sm-6 col-xs-12 border_produto"> 
+                    <div class="col-md-4 col-sm-6 col-6 border_produto"> 
                         <a href="{% url 'produtoInfo'%}?nome={{p.nome}}">
                             <img class="produto_image center" src="{{ p.img1.url }}"> 
                         </a>
@@ -456,14 +474,14 @@
                                     
                                     if(filter==""){
                                         for (ind = 0; ind < lista_nome.length; ind++) {
-                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
                                             no_elementos.innerHTML = "Produtos (" + "{{produtos|length}}" + ")"; 
                                         }
                                     }
                                     else{
                                         for (i = 0; i < lista_nome.length; i++) {
                                             if (lista_nome[i].toUpperCase().indexOf(filter) > -1) {
-                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
+                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
                                                 contaProdutos+=1;  
                                             }
                                              else {
@@ -508,14 +526,14 @@
                                     
                                     if(filter==""){
                                         for (ind = 0; ind < lista_nome.length; ind++) {
-                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
                                             no_elementos.innerHTML = "Produtos (" + "{{produtos|length}}" + ")"; 
                                         }
                                     }
                                     else{
                                         for (i = 0; i < lista_nome.length; i++) {
                                             if (lista_nome[i].toUpperCase().indexOf(filter) > -1) {
-                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
+                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
                                                 contaProdutos+=1;
                                             }
                                              else {
@@ -540,7 +558,7 @@
                                     // Loop through all list items, and hide those who don't match the search query
                                     for (i = 0; i < lista_nome.length; i++) {
                                         if (lista_nome[i].toUpperCase().indexOf(filter) > -1) {
-                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
+                                            elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><img class='produto_image center' src='" + lista_img1[i] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[i] + "'><p class='produto_nome text-center'>" + lista_nome[i] + "</p></a></div>";
                                             contaProdutos+=1;
                                         }
                                          else {
@@ -552,7 +570,7 @@
                                 }
                             }
                             else{
-                                elemento.innerHTML = "{% for p in produtos %}<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome={{p.nome}}'><img class='produto_image center' src='{{ p.img1.url }}'></a><a href='{% url 'produtoInfo'%}?nome={{p.nome}}'><p class='produto_nome text-center'>{{p.nome}}</p></a></div>{% endfor %}";
+                                elemento.innerHTML = "{% for p in produtos %}<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome={{p.nome}}'><img class='produto_image center' src='{{ p.img1.url }}'></a><a href='{% url 'produtoInfo'%}?nome={{p.nome}}'><p class='produto_nome text-center'>{{p.nome}}</p></a></div>{% endfor %}";
                                 no_elementos.innerHTML = "Produtos (" + "{{produtos|length}}" + ")"; 
                             }
                             
@@ -596,7 +614,7 @@
                                         for (ind = 0; ind < lista_nome.length; ind++) {
                                             for (jnd = 0; jnd < getall.length; jnd++){
                                                 if(lista_grupo[ind]==getall[jnd]){
-                                                    elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                                    elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
                                                     cont+=1;
                                                 }
                                             }
@@ -630,7 +648,7 @@
                                         for (ind = 0; ind < lista_nome.length; ind++) {
                                             for (jnd = 0; jnd < getall.length; jnd++){
                                                 if(lista_grupo[ind]==getall[jnd]){
-                                                    elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                                    elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
                                                     cont+=1;
                                                 }
                                             }
@@ -644,7 +662,7 @@
                                     for (ind = 0; ind < lista_nome.length; ind++) {
                                         for (jnd = 0; jnd < getall.length; jnd++){
                                             if(lista_grupo[ind]==getall[jnd]){
-                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 col-xs-12 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
+                                                elemento.innerHTML =  elemento.innerHTML  + "<div class='col-md-4 col-sm-6 border_produto'><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><img class='produto_image center' src='" + lista_img1[ind] + "'></a><a href='{% url 'produtoInfo'%}?nome=" + lista_nome[ind] + "'><p class='produto_nome text-center'>" + lista_nome[ind] + "</p></a></div>";
                                                 cont+=1;
                                             }
                                         }
@@ -669,23 +687,23 @@
 </div>
 
 <div class="footer" id="contactos">
-    <div class="container">
+    <div class="container" style="padding-bottom: 15px;">
         <div class="row">
             <div class="col-md-5">
                 <h5 class="footer_title">O Quadradinho</h5>
                 <p class="footer_description">Loja de produtos artesanais, 
                     loiças decorativas e lãs localizada 
                     no centro da maravilhosa Vila de Manteigas.</p>
+              
                 <a class="link_contacto" href="https://www.google.com/maps/place/O+Quadradinho/@40.4018137,-7.5370959,20z/data=!4m16!1m10!4m9!1m4!2m2!1d-7.5355564!2d40.3993795!4e1!1m3!2m2!1d-7.5369901!2d40.4019024!3m4!1s0xd3cd9b7bce73eff:0x1a194b3225eac3dd!8m2!3d40.4018361!4d-7.5369168">
-                    <i class='fas fa-map-marker-alt' style='font-size:25px;color:red' ></i> 
-                    Manteigas, Portugal
+                    <img src="{%static 'images/pin_location.png' %}" width="25" height="25" alt=""> <span class="footer_description">Manteigas, Portugal</span>
                 </a>
             </div>
             <div class="col-md-3 ml-auto">
-                <h5 class="footer_title">Contactos </h5>
+                <h5 class="footer_title contactos_title">Contactos </h5>
                 <address class="footer_description">
-                    E-MAIL:    <a class="link_contacto" href="mailto:anapintovicente@gmail.com">anapintovicente@gmail.com</a><br>
-                    TELEMÓVEL: <a class="link_contacto" href="tel:966177984">966177984</a><br>
+                    E-MAIL:    <a class="link_contacto footer_description" href="mailto:anapintovicente@gmail.com">anapintovicente@gmail.com</a><br>
+                    TELEMÓVEL: <a class="link_contacto footer_description" href="tel:966177984">966177984</a><br>
                 </address>
                 <a href="https://www.facebook.com/O-Quadradinho-100222518414321" class="fa fa-facebook"></a>
             </div>
@@ -698,7 +716,6 @@
                 </a>
             </div>
         </div>
-        <div class="row mt-2"></div>
     </div>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 .background1{
     /* Full height */
-	
+  
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -30,7 +30,14 @@
     
 }
 
+.idea_lamp_style{
+  width:90px;
+  height:auto;
+}
+
 .image_slideshow{
+  max-height: 350px;
+  max-width: 350px;
 }
 
 * {box-sizing:border-box}
@@ -149,6 +156,42 @@
     font-family: Amatic SC;
     font-size: 90px;
     color: #000000;
+}
+
+@media screen and (max-width: 600px) {
+  
+  #wrapper { 
+    flex-wrap: wrap;  
+  }
+
+  #left { 
+    flex-basis: 100%;
+    margin-left: 0px; 
+    margin-bottom: 30px;
+  }
+
+  .slideshow-container{
+    max-width: 350px;
+  }
+
+  .image_slideshow{
+    max-height: 250px;
+    max-width: 250px;
+  }
+
+  .product_name{
+    font-size: 70px;
+  }
+  .descricao_produto{
+    font-size: 16px;
+  }
+
+  .idea_lamp_style{
+    width:70px;
+    height:auto;
+  }
+
+
 }
 
 

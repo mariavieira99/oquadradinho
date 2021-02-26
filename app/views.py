@@ -1,17 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Produto
-#import csv  
+import csv  
 from django.core.files.storage import FileSystemStorage
+from django.core.files.images import ImageFile
 import PIL
 from PIL import Image
 # Create your views here.
 
 
 def home (request):
-    
+
     '''
-    with open('static\produtos.csv', encoding='utf-8') as csv_file:
+    with open('static/produtos.csv', encoding='latin-1') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=';')
         line = 0
         for row in csv_reader:
@@ -22,56 +23,52 @@ def home (request):
             produto.nome = row[0]
             produto.descricao = row[1]
             
+
             f = open(row[2], "rb")
-            fs = FileSystemStorage()
-            image = fs.save(f.name, f)
-            produto.img1 = image
-            
+            produto.img1 = row[2]
+            produto.img1.save(f.name, f)
+
             produto.grupo = row[3]
 
             if row[4] != "":
                 f = open(row[4], "rb")
-                fs = FileSystemStorage()
-                image = fs.save(f.name, f)
-                produto.img2 = image
+                produto.img2 = row[4]
+                produto.img2.save(f.name, f)
             else:
                 produto.img2 = row[4]
 
             if row[5] != "":
                 f = open(row[5], "rb")
-                fs = FileSystemStorage()
-                image = fs.save(f.name, f)
-                produto.img3 = image
+                produto.img3 = row[5]
+                produto.img3.save(f.name, f)
             else:
                 produto.img3 = row[5]
 
             if row[6] != "":
                 f = open(row[6], "rb")
-                fs = FileSystemStorage()
-                image = fs.save(f.name, f)
-                produto.img4 = image
+                produto.img4 = row[6]
+                produto.img4.save(f.name, f)
             else:
                 produto.img4 = row[6]
             
             if row[7]!= "":
                 f = open(row[7], "rb")
-                fs = FileSystemStorage()
-                image = fs.save(f.name, f)
-                produto.img5 = image
+                produto.img5 = row[7]
+                produto.img5.save(f.name, f)
             else:
                 produto.img5 = row[7]
             
             if row[8]!= "":
                 f = open(row[8], "rb")
-                fs = FileSystemStorage()
-                image = fs.save(f.name, f)
-                produto.img6 = image
+                produto.img6 = row[8]
+                produto.img6.save(f.name, f)
             else:
                 produto.img6 = row[8]
 
             produto.sugestao = row[9]
             
             produto.save()
+    
     '''
     produtos = Produto.objects.all().order_by('?')
     return render(request, 'home.html',{'produtos': produtos})
@@ -96,3 +93,8 @@ def produtoInfo (request):
             contImages.append(produto.img6)
         print("images: " , contImages)
         return render(request, 'produto_information.html', {'produto': produto, 'images_produto': contImages})
+
+
+def sobreNos(request):
+    if request.method == "GET":
+        return render(request, 'sobre_nos.html')

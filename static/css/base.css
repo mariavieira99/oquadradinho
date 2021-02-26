@@ -1,3 +1,7 @@
+#visit_counter{
+  display: none;
+}
+
 .footer {
     left: 0;
     bottom: 0;
@@ -17,9 +21,6 @@
     font-size: 15px;
 }
 
-.link_contacto:link{
-    
-}
 
 .separation_footer{
     border: 1px solid #000000;
@@ -37,12 +38,37 @@
     border-radius: 50%;
   }
   
-  .fa:hover {
-      opacity: 0.7;
-  }
+.fa:hover {
+    opacity: 0.7;
+}
   
-  .fa-facebook {
-    background: #3B5998;
-    color: white;
-    margin-left: 40%;
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  margin-left: 45%;
+  margin-right: auto;
+}
+
+.link_contacto, .link_contacto:link, .link_contacto:visited{
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 530px) {
+  .footer_title{
+    font-size: 25px;
   }
+
+  .footer_description{
+    font-size: 14.5px;
+  }
+
+  .contactos_title{
+    margin-top: 10px;
+  }
+
+  .footer {
+    width: 100%;
+    padding-top: 10px;
+  }
+}

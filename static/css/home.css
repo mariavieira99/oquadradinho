@@ -3,16 +3,17 @@ body, html {
     height: 100%;
     padding: 0;
     margin: 0;
-    margin-top: -4px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }  
 
 html{
-    scroll-behavior: smooth;
 }
+
 
 .background{
     /* Full height */
-	
+    
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -21,7 +22,7 @@ html{
 
 .bg1{
     height: 100%;
-	width: 100%;
+    width: 100%;
     -webkit-transition: background-image 2s;
 }
 
@@ -30,7 +31,14 @@ html{
 }
 
 .navbar{
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.8);
+}
+#page{
+    overflow: hidden;
+}
+.logo_inicial{
+    width: 18vmin;
+    height:auto;
 }
 
 .center{
@@ -41,6 +49,11 @@ html{
 
 .border_produto {
     border: 1px solid transparent;
+    overflow:hidden;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color:rgb(105,105,105);
 }
 
 .border_produto:hover {
@@ -49,25 +62,26 @@ html{
 }
 
 .img-fluid{
-    max-width: 5%;
+    max-width: 10vmin;
+    max-height:auto;
 }
 
 .title{
     font-family: Amatic SC;
-    font-size: 130px;
+    font-size: 20vmin;
     color: #000000;
 }
 
 
 .title1{
     font-family: Rock Salt;
-    font-size: 30px;
+    font-size: 5vmin;
     color: #000000;
 }
 
 .description{
     font-family: Shanti;
-    font-size: 18px;
+    font-size: 3vmin;
     color: #000000;
 }
 
@@ -98,6 +112,10 @@ html{
     color: #000000; 
 }
 
+.n_produtos{
+   margin-left: 40px;
+}
+
 .down {
     border: solid black;
     border-width: 0 3px 3px 0;
@@ -118,6 +136,7 @@ html{
   
 .dropdown {
     display: inline-block;
+    margin-right: 50px;
 }
   
 .dropdown-content {
@@ -152,7 +171,7 @@ table, tr, td {
 
 .produto_image{
     max-height: 350px;
-    max-width: 350px;
+    max-width: auto;
 }
 
 
@@ -177,6 +196,10 @@ table, tr, td {
     margin-left: 10px;
 }
 
+#filters{
+    margin-left:40px;
+}
+
 hr {
     border: 2px solid #000000;
     border-radius: 5px;
@@ -194,15 +217,15 @@ hr {
   }
   
   #myInput {
-    background-position: 10px 12px; /* Position the search icon */
-    background-repeat: no-repeat; /* Do not repeat the icon image */
-    background-size: 10%;
-    width: 100%; /* Full-width */
-    font-size: 16px; /* Increase font-size */
-    padding: 12px 20px 12px 40px; /* Add some padding */
+    background-position: 8px 9px; 
+    background-repeat: no-repeat; 
+    background-size: 30px;
+    width: 100%; 
+    font-size: 16px; 
+    padding: 15px 20px 12px 40px; 
     border: 1px solid #000000; 
     border-radius: 50px;
-    margin-bottom: 12px; /* Add some space below the input */
+    margin-bottom: 12px; 
   }
 
 .checkbox {
@@ -252,30 +275,28 @@ hr {
 }
 
 @media screen and (max-width: 1200px) {
-    .title {
-      font-size: 130px;
-    }
 
-    .title1 {
-        font-size: 30px;
-    }
+  }
+  @media screen and (max-width: 900px) {
 
-    .title2 {
+
+    .n_produtos{
         font-size: 18px;
     }
+
+    .ordenar_por{
+        font-size: 15px;
+    }
+
+    .produto_image{
+        max-height: 250px;
+        max-width: auto;
+    }
   }
-
   @media screen and (max-width: 600px) {
-    .title {
-      font-size: 100px;
-    }
-
-    .title1 {
-        font-size: 20px;
-    }
-
-    .title2 {
-        font-size: 12px;
+    .produtos_left {
+        flex: 0 0 50%;
+        
     }
 
     .n_produtos{
@@ -284,21 +305,78 @@ hr {
 
     .produto_image{
         max-height: 250px;
-        max-width: 250px;
+        max-width: auto;
+    }
+    .produto_nome{
+        font-size: 15px;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        color:rgb(105,105,105);
+    }
+    
+    .navbar{
+        background: rgba(255,255,255,0.85);
+    } 
+  }
+
+  @media screen and (max-width: 560px) {
+    .logo_inicial{
+        width: 80px;
+        padding-bottom: 15px;
+    }
+
+    .description{
+       font-size: 4vmin;
+    }
+
+
+    .n_produtos{
+        font-size: 18px;
+    }
+
+    .produto_image{
+        max-height: 250px;
+        max-width: auto;
+    }
+
+    .dropdown {
+        margin-left: 30px;
+    }
+    .ordenar_por{
+        font-size: 13px;
+    }
+
+    .down {
+        border-width: 0 2px 2px 0;
+        padding: 2px;
+    }
+
+    .up{
+        border-width: 0 2px 2px 0;
+        padding: 2px;
+    }
+
+    #myInput{
+        margin-left: 30px;
+    }
+    #filters{
+        margin-left: 30px;
+    }
+
+    .n_produtos{
+        margin-left: 30px;
     }
   }
 
   @media screen and (max-width: 500px) {
-    .title {
-      font-size: 80px;
+
+    .description{
+       font-size: 4vmin;
     }
 
-    .title1 {
-        font-size: 17px;
-    }
-
-    .title2 {
-        font-size: 8px;
+    .img-fluid{
+        max-width: 14vmin;
+        max-height:auto;
     }
 
     .n_produtos{
@@ -307,21 +385,47 @@ hr {
 
     .produto_image{
         max-height: 200px;
-        max-width: 200px;
+        max-width: auto;
     }
+  
   }
 
   @media screen and (max-width: 400px) {
-    .title {
-      font-size: 60px;
+
+    .logo_inicial{
+        width: 110px;
+        height: auto;
     }
 
-    .title1 {
-        font-size: 15px;
+    .img-fluid{
+        max-width: 14vmin;
+        max-height:auto;
     }
 
-    .title2 {
-        font-size: 6px;
+    .description{
+       font-size: 4.5vmin;
+    }
+    
+    .n_produtos{
+        font-size: 18px;
+    }
+
+    .produto_image{
+        max-height: 150px;
+        max-width: auto;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .img-fluid{
+        max-width: 15vmin;
+        max-height:auto;
+    }
+
+    .description{
+       margin-top:10vmin;
+       font-size: 5vmin;
+       margin-bottom: 20vmin;
     }
 
     .n_produtos{
@@ -330,6 +434,28 @@ hr {
 
     .produto_image{
         max-height: 150px;
-        max-width: 150px;
+        max-width: auto;
+    }
+  }
+
+
+  @media screen and (max-width: 307px) {
+
+    .img-fluid{
+        max-width: 17vmin;
+        max-height:auto;
+    }
+
+    .description{
+       font-size: 6vmin;
+    }
+
+    .n_produtos{
+        font-size: 18px;
+    }
+
+    .produto_image{
+        max-height: 150px;
+        max-width: auto;
     }
   }

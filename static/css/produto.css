@@ -1,6 +1,6 @@
 .background1{
     /* Full height */
-	
+  
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -30,7 +30,14 @@
     
 }
 
+.idea_lamp_style{
+  width:90px;
+  height:auto;
+}
+
 .image_slideshow{
+  max-height: 350px;
+  max-width: 350px;
 }
 
 * {box-sizing:border-box}
@@ -130,20 +137,39 @@
     color: #000000;
 }
 
+.dica_style_sugestao{
+  padding: 20px 0;
+  border: 5px solid #B88846;
+  box-shadow: 10px 12px 0.5rem rgba(0,0,0,0.5);
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  font-family: Chivo;
+  font-size: 17px;
+}
+
+.dica_style_sugestao:hover{
+  background-color: #bbbb;
+  cursor: pointer;
+}
+
 .dica_style{
-    padding: 20px 0;
-    border: 5px solid #B88846;
-    box-shadow: 10px 12px 0.5rem rgba(0,0,0,0.5);
-    text-align: center;
-    line-height: 10px;
-    cursor: pointer;
-    font-family: Chivo;
+  padding: 20px 0;
+  border: 5px solid #B88846;
+  box-shadow: 10px 12px 0.5rem rgba(0,0,0,0.5);
+  text-align: center;
+  line-height: 10px;
+  cursor: pointer;
+  font-family: Chivo;
+  font-size: 30px;
 }
 
 .dica_style:hover{
-    background-color: #bbbb;
-    cursor: pointer;
+  background-color: #bbbb;
+  cursor: pointer;
 }
+
+
 
 .product_name{
     font-family: Amatic SC;
@@ -151,5 +177,82 @@
     color: #000000;
 }
 
+@media screen and (max-width: 600px) {
+  
+  #wrapper { 
+    flex-wrap: wrap;  
+  }
+
+  #left { 
+    flex-basis: 100%;
+    margin-left: 0px; 
+    margin-bottom: 30px;
+  }
+
+  .slideshow-container{
+    max-width: 350px;
+  }
+
+  .image_slideshow{
+    max-height: 250px;
+    max-width: 250px;
+  }
+
+  .product_name{
+    font-size: 70px;
+  }
+  .descricao_produto{
+    font-size: 16px;
+  }
+
+  .dica_style{
+    font-size: 26px;
+  }
+
+  .dica_style_sugestao{
+    font-size: 15px;
+  }
+
+  .idea_lamp_style{
+    width:70px;
+    height:auto;
+  }
+
+
+}
+
+
+@media screen and (max-width: 450px) {
+
+  .slideshow-container{
+    max-width: 300px;
+  }
+
+  .image_slideshow{
+    max-height: 200px;
+    max-width: 200px;
+  }
+
+  .product_name{
+    font-size: 50px;
+  }
+  .descricao_produto{
+    font-size: 15px;
+  }
+
+  .idea_lamp_style{
+    width:60px;
+    height:auto;
+  }
+
+  .dica_style{
+    font-size: 24px;
+  }
+
+  .dica_style_sugestao{
+    font-size: 14px;
+  }
+
+}
 
 
